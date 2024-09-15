@@ -111,7 +111,7 @@
         background: #fff;
         color: var(--laa-clr-h1);
         overflow: hidden;
-        transition: all .5s var(--laa-cube-1);
+        transition: all .5s var(--wa-cube-1);
     }
 
     .text {
@@ -156,14 +156,14 @@
         justify-content: center;
         position: relative;
         z-index: 1;
-        transition: all .5s  var(--laa-cube-1);
+        transition: all .5s  var(--wa-cube-1);
 
         i {
             left: 50%;
             top: 50%;
             transform: translate(-50% , -50%);
             position: absolute;
-            transition: all .5s  var(--laa-cube-1);
+            transition: all .5s  var(--wa-cube-1);
 
             &:nth-child(1) {
                 left: -30%;

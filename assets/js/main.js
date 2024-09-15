@@ -11,6 +11,41 @@
 gsap.config({
 	nullTargetWarn: false,
 });
+
+
+
+// smoooth scroll activation start
+
+const lenis = new Lenis({
+	duration: .9, 
+	easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+	direction: 'vertical', 
+	smooth: true, 
+	smoothTouch: false, 
+  });
+  
+  function raf(time) {
+	lenis.raf(time);
+	requestAnimationFrame(raf);
+  }
+  
+  requestAnimationFrame(raf);
+  $('a[href^="#"]').on('click', function (e) {
+	e.preventDefault(); 
+  
+	const target = $(this.getAttribute('href')); 
+  
+	if (target.length) {
+	  lenis.scrollTo(target[0], {
+		duration: 1.2, 
+		easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
+	  });
+	}
+  });
+
+
+
+
 // preloader
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -26,95 +61,74 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		}
 
-		setTimeout(function() {
-
-
-		}, 500);
-
-		// title-animation
-		if($('[txaa-split-text-1]').length) {
-			var txasplit1 = $('[txaa-split-text-1]');
-			if(txasplit1.length == 0) return; gsap.registerPlugin(SplitText); txasplit1.each(function(index, el) {
-				el.split = new SplitText(el, { 
-				type: "lines,words",
-				linesClass: "split-line"
-				});
+		var lgherotl = gsap.timeline({
+				defaults: { duration:2.5,
+					ease: "power4.out", } //
 			});
-		}
+
+		lgherotl.from(".lg-hero-1-bg-shape" , { yPercent: -50, scaleY: 0, opacity: 0, })
+		.from(".lg-hero-1-img" , { xPercent: -100, scale: 0, opacity: 0,  } , "<=1")
+		.from(".lg-hero-1-content-btn" , { xPercent: -100, opacity: 0,  } , "<=1")
 
 		
-		if($('.txaa-split-text-2').length) {
-			var txasplit2 = $(".txaa-split-text-2");
+		if ($('.wa-split-text-2').length) {
+			const stsplittext2 = $(".wa-split-text-2");
+			stsplittext2.each(function(index, el) {
+				el.split = new SplitText(el, { 
+					type: "lines",
+					linesClass: "split-line"
+				});
+				if ($(el).hasClass('wa-split-text-2-ani')) {
+					gsap.set(el.split.lines, {
+						xPercent: -100
+					});
+					el.anim = gsap.to(el.split.lines, {
+						xPercent: 0,
+						y: "0",
+						color: 'inherit',
+						opacity: 1,
+						duration: 2.5,
+						ease: "power4.out",
+						stagger: 0.5,
+						delay: 0.5
+					});
+				}
+			});
+		}
 
-			if(txasplit2.length == 0) return; gsap.registerPlugin(SplitText); txasplit2.each(function(index, el) {
-			
+
+		if ($('.wa-split-text-3').length) {
+			var st = $(".wa-split-text-3");
+			st.each(function(index, el) {
 				el.split = new SplitText(el, { 
 					type: "lines,words,chars",
 					linesClass: "split-line"
 				});
-			
-				if( $(el).hasClass('txaa-split-text-2-ani') ){
+				if ($(el).hasClass('wa-split-text-3-ani')) {
 					gsap.set(el.split.chars, {
-						opacity: 0,
-						x: "-5",
+						opacity: .3,
+						color: '#f62459',
+						x: -10,  
 					});
 				}
-			
 				el.anim = gsap.to(el.split.chars, {
 					scrollTrigger: {
 						trigger: el,
-						start: "top 90%",
-						end: "top 60%",
-						markers: false,
-						scrub: 1,
+						start: "top 90%",  
+						markers: false  
 					},
-			
-					x: "0",
-					y: "0",
-					opacity: 1,
-					duration: .7,
-					stagger: 0.2,
+					x: 0,               
+					y: 0,               
+					color: 'inherit',  
+					opacity: 1,         
+					duration: 1,        
+					stagger: 0.02,      
+					ease: "power4.out",
 				});
-			
 			});
 		}
-
-		if($('.txaa-split-text-3').length) {
-			var txasplit2 = $(".txaa-split-text-3");
-
-			if(txasplit2.length == 0) return; gsap.registerPlugin(SplitText); txasplit2.each(function(index, el) {
-			
-				el.split = new SplitText(el, { 
-					type: "lines,words,chars",
-					linesClass: "split-line"
-				});
-			
-				if( $(el).hasClass('txaa-split-text-3-ani') ){
-					gsap.set(el.split.chars, {
-						opacity: .2,
-						x: "-5",
-					});
-				}
-			
-				el.anim = gsap.to(el.split.chars, {
-					scrollTrigger: {
-						trigger: el,
-						start: "top 90%",
-						end: "top 60%",
-						markers: false,
-						scrub: 1,
-					},
-			
-					x: "0",
-					y: "0",
-					opacity: 1,
-					duration: .7,
-					stagger: 0.2,
-				});
-			
-			});
-		}
-
+		
+		
 	})
 
 });
