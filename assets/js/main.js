@@ -8,9 +8,6 @@
 "use strict";
 
 
-
-
-
 gsap.config({
 	nullTargetWarn: false,
 });
@@ -30,151 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 
 		setTimeout(function() {
-			// home-1-hero
-			if($('.fx-hero-1-active').length) {
-				let slider = new Swiper('.fx-hero-1-active', {
-					loop: true,
-					spaceBetween: 0,
-					speed: 500,
-					effect: "fade",
-					fadeEffect: {
-						crossFade: true
-					},
-					autoplay: {
-						delay: 4000,
-					},
-			
-					pagination: {
-						el: ".fx-hero-1-pagination",
-						clickable: true,
-					},
-			
-			
-				});
-			}
 
-			// home-2-hero
-			if($('.fx-hero-2-active').length) {
-				let slider = new Swiper('.fx-hero-2-active', {
-					loop: true,
-					spaceBetween: 0,
-					speed: 500,
-					autoplay: {
-						delay: 4000,
-					},
-			
-					pagination: {
-						el: ".fx-hero-2-pagination",
-						clickable: true,
-					  },
-			
-			
-				});
-			}
-
-			// home-3-hero
-			if($('.fx-hero-3-active').length) {
-				let slider = new Swiper('.fx-hero-3-active', {
-					loop: true,
-					spaceBetween: 0,
-					speed: 500,
-					autoplay: {
-						delay: 4000,
-					},
-			
-					pagination: {
-						el: ".fx-hero-3-pagination",
-						clickable: true,
-					},
-			
-					navigation: {
-						nextEl: ".fx-h3-slider-next",
-						prevEl: ".fx-h3-slider-prev",
-					},
-			
-				});
-			}
-
-			// home-4-hero
-			if($('.fx-hero-4-active').length) {
-				let slider = new Swiper('.fx-hero-4-active', {
-					loop: true,
-					spaceBetween: 0,
-					speed: 500,
-					autoplay: {
-						delay: 4000,
-					},
-
-			
-					pagination: {
-						el: ".fx-hero-4-pagination",
-						clickable: true,
-					},
-			
-
-				});
-			}
-
-			// home-5-hero
-			if($('.fx-h5-active').length) {
-				let slider = new Swiper('.fx-h5-active', {
-					loop: true,
-					spaceBetween: 40,
-					speed: 500,
-					direction: "vertical",
-					mousewheel: true,
-					autoplay: {
-						delay: 4000,
-					},
-			
-					pagination: {
-						el: ".fx-hero-5-pagination",
-						clickable: true,
-					},
-			
-			
-				});
-			}
-
-			// home-3-hero
-			if($('.fx-h6-active').length) {
-				let slider = new Swiper('.fx-h6-active', {
-					loop: true,
-					spaceBetween: 0,
-					speed: 500,
-					autoplay: {
-						delay: 4000,
-					},
-			
-				});
-			}
-
-			if($('.fx-h6-active2').length) {
-				let slider = new Swiper('.fx-h6-active2', {
-					loop: true,
-					spaceBetween: 0,
-					speed: 500,
-					autoplay: {
-						delay: 5000,
-					},
-			
-					navigation: {
-						nextEl: ".fx-h6-slider-next",
-						prevEl: ".fx-h6-slider-prev",
-					},
-			
-				});
-			}
-
-			var fxh6imgglow = gsap.timeline();
-			fxh6imgglow.to(".fx-hero-6-bg-glow" , { opacity: .7,  duration:1 })
-			fxh6imgglow.to(".fx-hero-6-img-glow" , { xPercent: -100,  duration:1 },"<.5")
-			fxh6imgglow.to(".fx-hero-6-img-glow-2" , { xPercent: -100,  duration:1 , })
-
-			// breadcrumb
-			var breadcrumb = gsap.timeline();
-			breadcrumb.to(".breadcrumb-title .split-line div" , { yPercent: -100, delay: -.5, })
-			breadcrumb.to(".breadcrumb-slideup" , { yPercent: -100, })
 
 		}, 500);
 
@@ -262,9 +115,6 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 		}
 
-
-
-
 	})
 
 });
@@ -331,11 +181,61 @@ jQuery(".mobile-main-navigation li.dropdown").append('<span class="dropdown-btn"
 });
 
 
+// testimonial-1-slider
+if($('.iner-page-slide-active').length) {
+	let slider = new Swiper('.iner-page-slide-active', {
+		loop: true,
+		spaceBetween: 0,
+		speed: 1000,
+		slidesPerView: 1,
+
+		autoplay: {
+			delay: 4000,
+		},
+
+		navigation: {
+			nextEl: ".iner-page-slider-next",
+			prevEl: ".iner-page-slider-prev",
+		},
+
+		pagination: {
+			el: ".iner-page-pagination",
+			clickable: true,
+		},
+
+
+		breakpoints: {
+			0: {
+				slidesPerView: 1,
+			},
+			576: {
+				slidesPerView: 2,
+			},
+			768: {
+				slidesPerView: 2,
+			},
+			992: {
+				slidesPerView: 3,
+			},
+			1200: {
+				slidesPerView: 4,
+			},
+			1400: {
+				slidesPerView: 4,
+			},
+			1600: {
+				slidesPerView: 5,
+			},
+		},
+
+	});
+}
+
 
 /*
 	marquee-activiton
 */
-$('.js-marquee-wrapper').marquee({
+$('.text-slide-1-active').marquee({
 	speed: 50,
 	gap: 65,
 	delayBeforeStart: 0,
@@ -359,19 +259,11 @@ backtotop.on('click', function(e) {
 });
 
 
-/* counter */
-$('.counter').counterUp({
-	delay: 10,
-	time: 3000
-});
-
 /* data-bg-activition */
 $("[data-background]").each(function(){
 	$(this).css("background-image","url("+$(this).attr("data-background") + ") ")
 })
 
-// wow-splitting-text
-Splitting();
 
 // wow-activation
 if($('.wow').length){
@@ -387,45 +279,6 @@ if($('.wow').length){
 	wow.init();
 };
 
-
-/*
-popup-video-activition
-====start====
-*/
-
-if($('.popup-video').length) {
-	$('.popup-video').magnificPopup({
-		type: 'iframe'
-	});
-}
-
-
-/*
-popup-img-activition
-====start====
-*/
-
-if($('.popup_img').length) {
-	$('.popup_img').magnificPopup({
-		type: 'image',
-		gallery: {
-			enabled: true,
-		},
-	});
-}
-
-/*
-popup-img-activition
-====start====
-*/
-if($('.nice-select').length) {
-	$('.nice-select select').niceSelect();
-}
-
-// parallax-img
-$('.parallax-img').parallaxie({  
-	speed: 0.5,    
-});
 
 
 })(jQuery);
