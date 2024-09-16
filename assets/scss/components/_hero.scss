@@ -80,7 +80,8 @@
 
     &-img {
         margin-right: -298px;
-
+        mix-blend-mode: multiply;
+        
         @media #{$xxl,$xl,$lg,$md,$xs} {
             margin-right: 0px;
         }

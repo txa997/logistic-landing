@@ -3,6 +3,36 @@
   header-1-css-start
 */
 
+
+.sticky_header_1 {
+
+  &:is(.sticky1) {
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    animation: slideInDown .5s;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+}
+
+@keyframes slideInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-400px);
+    -ms-transform: translateY(-400px);
+    transform: translateY(-400px);
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    -ms-transform: translateY(0);
+    transform: translateY(0);
+  }
+}
+
 .lg-header-1 {
 
   &-area {

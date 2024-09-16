@@ -17,7 +17,7 @@ gsap.config({
 // smoooth scroll activation start
 
 const lenis = new Lenis({
-	duration: .9, 
+	duration: .7, 
 	easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
 	direction: 'vertical', 
 	smooth: true, 
@@ -62,11 +62,11 @@ document.addEventListener("DOMContentLoaded", function () {
 		}
 
 		var lgherotl = gsap.timeline({
-				defaults: { duration:2.5,
+				defaults: { duration:2,
 					ease: "power4.out", } //
 			});
 
-		lgherotl.from(".lg-hero-1-bg-shape" , { yPercent: -50, scaleY: 0, opacity: 0, })
+		lgherotl.from(".lg-hero-1-bg-shape" , { yPercent: -50, scaleY: 0, opacity: 0, delay: .3 })
 		.from(".lg-hero-1-img" , { xPercent: -100, scale: 0, opacity: 0,  } , "<=1")
 		.from(".lg-hero-1-content-btn" , { xPercent: -100, opacity: 0,  } , "<=1")
 
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						y: "0",
 						color: 'inherit',
 						opacity: 1,
-						duration: 2.5,
+						duration: 2,
 						ease: "power4.out",
 						stagger: 0.5,
 						delay: 0.5
@@ -128,44 +128,20 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 		}
 		
-		
 	})
 
 });
 
-// sticky-header
-function glystickyHeader() {
-    var $window = $(window);
-    var lastScrollTop = 0;
-    var $header = $('.txa_sticky_header');
-    var headerHeight = $header.outerHeight() + 30;
+$(window).scroll(function() {
+	if ($(this).scrollTop() > 300){
+	$('.sticky_header_1').addClass('sticky1');
+	}
+	else{
+	$('.sticky_header_1').removeClass('sticky1');
+	}
+});
 
-    $window.scroll(function () {
-      var windowTop = $window.scrollTop();
-
-      if (windowTop >= headerHeight) {
-        $header.addClass('txa_sticky');
-      } else {
-        $header.removeClass('txa_sticky');
-        $header.removeClass('txa_sticky_show');
-      }
-
-      if ($header.hasClass('txa_sticky')) {
-        if (windowTop < lastScrollTop) {
-          $header.addClass('txa_sticky_show');
-        } else {
-          $header.removeClass('txa_sticky_show');
-        }
-      }
-
-      lastScrollTop = windowTop;
-    });
-}
-
-glystickyHeader();
-  
-
-// offcanvas-start
+// Toggle Offcanvas start
 $('.offcanvas_toggle').on('click', function() {
     $('.overlay, .offcanvas_box_active').addClass('active');
 });
@@ -182,6 +158,11 @@ $(document).on('keydown', function(event) {
     }
 });
 
+$('.offcanvas_box_active a').on('click', function() {
+    $('.offcanvas_box_active').removeClass('active');
+    $('.overlay').removeClass('active');
+});
+
 // mobile-menu
 jQuery(".mobile-main-navigation li.dropdown").append('<span class="dropdown-btn"><i class="fa-solid fa-angle-right"></i></span>'),
 	jQuery(".mobile-main-navigation li .dropdown-btn").on("click", function () {
@@ -194,6 +175,95 @@ jQuery(".mobile-main-navigation li.dropdown").append('<span class="dropdown-btn"
 			jQuery(this).parent().find("> .dropdown-menu").slideToggle());
 });
 
+
+		
+var lgfeaturestl = gsap.timeline({
+	scrollTrigger: {
+		trigger: ".lg-features-1-img",
+		start: "top 90%",  
+		markers: false  
+	},
+	defaults: { duration: 1,
+		ease: "power4.out", } //
+});
+
+lgfeaturestl.from(".lg-features-1-img-1" , { yPercent: 50, })
+lgfeaturestl.from(".lg-features-1-img-5" , { yPercent: 100, opacity: 0 }, "<=.3")
+lgfeaturestl.from(".lg-features-1-img-2" , { yPercent: 100, opacity: 0 }, "<=.3")
+lgfeaturestl.from(".lg-features-1-img-3" , { yPercent: 100, opacity: 0 }, "<=.3")
+lgfeaturestl.from(".lg-features-1-img-4" , { yPercent: 100, opacity: 0 }, "<=.3")
+lgfeaturestl.from(".lg-features-1-img-6" , { yPercent: 100, opacity: 0 }, "<=.3")
+
+var laa_ani1 = gsap.timeline({
+
+	scrollTrigger: {
+	  animation: laa_ani1,
+	  trigger: '.laa-animate-1-wrap',
+	  start: "top 95%",
+	  end: "top 20%",
+	  scrub: 3,
+	  toggleActions: "play reverse play reverse",
+	  markers: false
+	}
+});
+	
+laa_ani1.from(".laa-animate-1-cloud-1" , { xPercent: 100 ,  opacity: 0  })
+laa_ani1.from(".laa-animate-1-cloud-2" , { xPercent: 50 ,  opacity: 0  }, "<=")
+laa_ani1.from(".laa-animate-1-cloud-3" , { xPercent: 100 ,  opacity: 0  }, "<=.1")
+laa_ani1.from(".laa-animate-1-plane" , { xPercent: 100 , yPercent: -100, scale: .3, rotate: -30 , opacity: 0 }, "<=.5")
+
+
+var laa_footer = gsap.timeline({
+
+	scrollTrigger: {
+	  animation: laa_footer,
+	  trigger: '.lg-footer-bg-img',
+	  start: "top 95%",
+	  end: "top 50%",
+	  scrub: 1,
+	  toggleActions: "play reverse play reverse",
+	  markers: false
+	}
+});
+	
+laa_footer.from(".lg-footer-bg-img img" , { yPercent: 50 ,  })
+
+
+document.querySelectorAll('.laa-pattn-two').forEach((section, index) => {
+	const timeline = gsap.timeline({
+	  scrollTrigger: {
+		trigger: section,
+		start: "top 95%",
+		toggleActions: "play reverse play reverse",
+		markers: false,
+	  }
+	});
+  
+	timeline.from(section.querySelector('.laa-pattn-two-1'), { yPercent: 100, opacity: 0.16, duration: .3 });
+	timeline.from(section.querySelector('.laa-pattn-two-2'), { xPercent: -100, opacity: 0.16, duration: .3 });
+	timeline.from(section.querySelector('.laa-pattn-two-3'), { xPercent: -100, opacity: 0.56, duration: .3 });
+	timeline.from(section.querySelector('.laa-pattn-two-4'), { yPercent: 100, opacity: 0.08, duration: .3 });
+});
+  
+gsap.utils.toArray(".laa-img-parallax").forEach(function(container) {
+	let image = container.querySelector("img");
+
+	let tl = gsap.timeline({
+		scrollTrigger: {
+			trigger: container,
+			scrub: .5,
+		},
+		
+		
+	}); 
+	tl.from(image, {
+		yPercent: -20,
+		ease: "none",
+	}).to(image, {
+		yPercent: 20,
+		ease: "none",
+	}); 
+});
 
 // testimonial-1-slider
 if($('.iner-page-slide-active').length) {
